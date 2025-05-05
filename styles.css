@@ -1,0 +1,406 @@
+/* 
+    Name: Hoang Dang Pham
+    File: styles.css
+    Date Created: 02/09/2025
+    Date Updated: 05/04/2025
+    Purpose: Update the css file with more space for resume prompt, caps lock warning message 
+    for the extra credit assignment
+*/
+.logo-header {
+    position: sticky;
+     background-color: #87CEEB;
+    top: 0;  /* Stick to the top */
+    display: flex;         /* Enables horizontal layout */
+    align-items: center;   /* Aligns items vertically */
+    gap: 15px;             /* Adds spacing between image and text */
+    z-index: 1000;  /* Ensures it stays on top of other content */
+}
+
+/* Styling the wrapper for password field to have hide/show option */
+.password-wrapper {
+    position: relative;
+  }
+  
+  .password-wrapper input {
+    width: 100%;
+    padding-right: 8px; /* Space for the icon */
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    user-select: none;
+  }
+
+.logo-header img {
+    width: 90px;  /* Resize the image */
+    height: auto;  /* Maintain aspect ratio */
+}
+
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #87CEEB;
+    margin: 20px;
+    padding: 20px;
+}
+
+.cookie-info {
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 1.2rem;
+    min-height: 3.5rem;
+}
+
+#welcomeMessage {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: black; /* soft yellow for high contrast on blue */
+}
+
+#switchUser {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.95em;
+    color: purple; /* light peachy tone for warmth */
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#switchUser:hover {
+    color: #ffab91; /* slightly darker peach on hover */
+}
+
+.resume-prompt {
+    display: none; /* default hidden */
+    margin-top: 10px;
+    font-size: 1rem;
+    color:black;
+}
+
+.resume-prompt input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2); /* slightly bigger checkbox */
+    cursor: pointer;
+}
+
+.resume-prompt label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* space between checkbox and text */
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: nowrap; /* keeps the text on one line */
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: lightblue;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inline-group {
+    display: flex;
+    gap: 10px;
+}
+
+.inline-group input {
+    flex: 1;
+}
+
+.checkbox-group, .radio-group {
+    margin: 10px 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Container to align buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;  /* Space between buttons */
+    align-items: center;             /* Vertically center the buttons */
+    gap: 10px;                       /* Adds space between buttons */
+    width: 100%;                     /* Full container width */
+    margin-top: 15px;
+}
+
+/* Style for the buttons */
+button {
+    width: 32%;  /* Ensures the buttons are not too wide */
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Custom styles for specific buttons */
+button[type="reset"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+button[type="button"].submit-button {
+    background-color: #28a745;
+    color: white;
+}
+
+button[type="button"].review-btn {
+    background-color: rgb(8, 0, 255);
+    color: white;
+}
+
+/* Button hover effect */
+button:hover {
+    opacity: 0.8;
+}
+
+#clock {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* formating the required field notification */
+.required-note {
+  color: #e57373;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+/* Common style for all error messages */
+#firstName-status,
+#middleInitial-status,
+#lastName-status,
+#dob-status,
+#ssn-error-nonnumeric,
+#ssn-error-length,
+#phone-error-nonnumeric,
+#phone-error-length,
+#address1-status,
+#address2-status,
+#city-status,
+#state-status,
+#zip-status,
+#email-status,
+#gender-status,
+#vaccinated-status,
+#insurance-status {
+    display: block;        /* Ensures message appears below input */
+    min-height: 20px;      /* Reserves space */
+    margin-bottom: 10px;   /* Adds spacing */
+    color: red;            /* Makes errors stand out */
+    font-size: 14px;
+}
+
+/* Caps lock warning message stylying */
+.confirm-caps-warning,
+.caps-warning {
+    color: orange;
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    min-height: 20px; /* preserve space even when hidden */
+}
+
+/* Ensure the slider is inside a positioned container */
+.slider-container {
+    position: relative;
+    width: 100%; /* Adjust width as needed */
+    display: flex;
+    justify-content: center;
+}
+
+/* Style the slider */
+#health {
+    width: 100%;  
+    position: relative;
+}
+
+/* Style the value display */
+.value-display {
+    position: absolute;
+    top: 25px; /* Adjusts spacing below the slider */
+    font-weight: bold;
+    color: #080808; /* black color for visibility */
+    transition: left 0.1s ease;
+    pointer-events: none; /* Prevent interfering with slider thumb */
+}
+
+/* Place to pop up error message for username */
+#username-status {
+    display: block; /* Ensures message appears below input */
+    min-height: 20px; /* Reserves space */
+    margin-bottom: 15px; /* Adds spacing */
+    color: red; /* Makes errors stand out */
+    font-size: 14px;
+}
+
+/* Styling for validation messages */
+.valid {
+    color: green;
+    font-weight: bold;
+}
+
+.invalid {
+    color: red;
+    font-weight: bold;
+}
+
+#registrationForm span {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* Checklist styling */
+#password-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#password-checklist li {
+    font-size: 14px;
+    color: red;
+    margin-bottom: 5px;
+}
+
+#password-checklist li.valid {
+    color: green;
+}
+
+#password-status {
+    display: block;
+    min-height: 20px;  /* Reserves space for validation message */
+    margin-bottom: 10px; /* Creates spacing */
+}
+
+#confirmPassword-status {
+    display: block;  /* Ensures it appears below the input */
+    min-height: 20px; /* Reserves space */
+    margin-bottom: 10px; /* Creates spacing */
+}
+
+/* Styling for review section */
+.review-section {
+    display: none;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+#review-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#review-table th,
+#review-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+#review-table th {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+/* Style for the submit error message */
+#submit-error {
+    display: block;            /* Ensures message appears below input */
+    min-height: 80px;          /* Reserves space */
+    margin-bottom: 10px;       /* Adds spacing below */
+    margin-top: 20px;          /* Adds space above */
+    color: red;                /* Makes errors stand out */
+    font-size: 30px !important;           /* Double the size (30px * 2) */
+    text-align: center;        /* Center the text */
+    font-weight: bold;         /* Optional: makes it bolder */
+}
+
+.remember-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* space between checkbox and text */
+    font-size: 1.5rem;  /* adjust size as needed */
+    white-space: nowrap; /* keeps the text on one line */
+    cursor: pointer;
+}
+
+/*Style for footer and map */
+.footer-map-container {
+    text-align: center;
+    width: 100%;
+}
+
+/*Style for review table pop up */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .modal-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+
+  .warning-message {
+    display: block;
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    min-height: 1.5em;
+  }

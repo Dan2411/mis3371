@@ -1,0 +1,308 @@
+<!-- 
+    Name: Hoang Dang Pham
+    File: patient-form.html
+    Date Created: 02/09/2025
+    Date Updated: 05/04/2025
+    Purpose: Update the form by adding an option for the user to continue when they left off after submit the form,
+    changing the review button to pop up a page with all data info and an option to either submit or go back and also adding caps lock warning,
+    hide/show option for password field for the extra credit assignment
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="logo-header">
+        <img src="logo.png" alt="Medical Logo">
+        <h1>BlueSky Medical Center</h1>
+    </div>
+
+    <div class="container">
+        <div id="clock">Current Date: </div> <!-- Time will be displayed here -->
+
+        <div class="cookie-info">
+            <!-- Display welcome message for new user or visited user-->
+            <span id="welcomeMessage" class="welcome-message"></span>
+            <!-- Display an option for switching user if current user is the new user -->
+            <span id="switchUser" class="switch-user">
+            </span>
+            <!-- Resume prompt for returning user with saved form data -->
+            <div id="resumePrompt" class="resume-prompt">
+                <label>
+                    <input type="checkbox" id="resumeCheckbox"> Resume where you left off?
+                </label>
+            </div>
+        </div>
+
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <!-- First, Middle, Last Name -->
+            <label for="firstName">First Name:<span class="required-note">*required</span></label>
+            <input type="text" id="firstName" placeholder="Dan (req'd)" maxlength="30" pattern="[A-Za-z'-]{1,30}" required oninput="validateFirstName()" onblur="validateFirstName()"
+            title="Please enter a valid first name (letters, apostrophes, and dashes only)">
+            <span id="firstName-status"></span>
+
+            <label for="middleInitial">Middle Initial:</label>
+            <input type="text" id="middleInitial" placeholder="H" maxlength="1" pattern="[A-Za-z]?" oninput="validateMiddleInitial()" onblur="validateMiddleInitial()"
+            title="Optional - enter a valid middle initial (letters only)">
+            <span id="middleInitial-status"></span>
+
+            <label for="lastName">Last Name:<span class="required-note">*required</span></label>
+            <input type="text" id="lastName" placeholder="Pham (req'd)" maxlength="30" pattern="[A-Za-z'-]{1,30}" required oninput="validateLastName()" onblur="validateLastName()"
+            title="Please enter a valid last name (letters, apostrophes, and dashes only)">
+            <span id="lastName-status"></span>
+
+            <!-- Date of Birth -->
+            <label for="dob">Date of Birth:<span class="required-note">*required</span></label>
+            <input type="text" id="dob" placeholder="MM/DD/YYYY" required oninput="validateDOB()" onblur="validateDOB()" 
+            title="Please enter a valid date of birth (MM/DD/YYYY)">
+            <span id="dob-status"></span>
+
+            <!-- Social Security -->
+            <label for="ssn">Social Security Number:<span class="required-note">*required</span></label>
+            <div class="password-wrapper">
+                <input type="password" id="ssn" placeholder="XXX-XX-XXXX"
+                    pattern="\d{3}-\d{2}-\d{4}" required
+                    oninput="validateSSN()" onblur="validateSSN()"
+                    title="Please enter a valid SSN (numbers only)">
+                <span class="toggle-password" onclick="toggleVisibility('ssn', this)">👁️</span>
+            </div>
+            <span id="ssn-error-nonnumeric"></span>
+            <span id="ssn-error-length"></span>
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number:<span class="required-note">*required</span></label>
+            <input type="text" id="phone" placeholder="XXX-XXX-XXXX" maxlength="12" required oninput="validatePhone()" onblur="validatePhone()"
+            title="Please enter a valid phone number (numbers only)">
+            <span id="phone-error-nonnumeric"></span>
+            <span id="phone-error-length"></span>
+
+            <!-- Address -->
+            <label for="address1">Address Line 1:<span class="required-note">*required</span></label>
+            <input type="text" id="address1" placeholder="1234 Main St (req'd)" maxlength="30" required oninput="validateAddress1()" onblur="validateAddress1()"
+            title="Please enter one valid address">
+            <span id="address1-status"></span>
+
+            <label for="address2">Address Line 2:</label>
+            <input type="text" id="address2" placeholder="Apt #, etc..." maxlength="30" oninput="validateAddress2()" onblur="validateAddress2()"
+            title="Optional - enter additional address">
+            <span id="address2-status"></span>
+
+            <!-- City, State, Zip -->
+            <label for="city">City:<span class="required-note">*required</span></label>
+            <input type="text" id="city" placeholder="Anytown (req'd)" maxlength="30" required oninput="validateCity()" onblur="validateCity()"
+            title="Please enter a city name">
+            <span id="city-status"></span>
+
+            <label for="state">State:<span class="required-note">*required</span></label>
+            <select id="state" required onblur="validateState()">
+                <option value="">-- Select a State --</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+                <option value="DC">Washington D.C.</option>
+                <option value="PR">Puerto Rico</option>
+            </select>
+            <span id="state-status"></span>
+
+            <label for="zip">Zip Code:<span class="required-note">*required</span></label>
+            <input type="text" id="zip" placeholder="00000 or 00000-0000" maxlength="10" required 
+                oninput="formatZip()" onblur="truncateZip()">
+            <span id="zip-status"></span>
+
+            <!-- Email -->
+            <label for="email">Email Address:<span class="required-note">*required</span></label>
+            <input type="email" id="email" placeholder="name@example.com" required 
+                oninput="validateEmail()" onblur="validateEmail(), formatUsername()">
+            <span id="email-status"></span>
+
+            <!-- Textarea for Symptoms -->
+            <label for="symptoms">Describe your symptoms:</label>
+            <textarea id="symptoms" rows="3" cols="50"></textarea>
+
+            <!-- Checkboxes -->
+            <fieldset class="checkbox-group">
+                <legend>Have you had:</legend>
+                <input type="checkbox" id="chickenPox"><label for="chickenPox">Chicken Pox</label>
+                <input type="checkbox" id="measles"><label for="measles">Measles</label>
+                <input type="checkbox" id="covid"><label for="covid">Covid-19</label>
+                <input type="checkbox" id="smallPox"><label for="smallPox">Small Pox</label>
+                <input type="checkbox" id="tetanus"><label for="tetanus">Tetanus</label>
+            </fieldset>
+
+            <!-- Radio Buttons -->
+            <fieldset class="radio-group">
+                <legend>Gender:<span class="required-note">*required</span></legend>
+                <input type="radio" name="gender" value="Male" onchange="validateGender()"> Male
+                <input type="radio" name="gender" value="Female" onchange="validateGender()"> Female
+                <input type="radio" name="gender" value="Other" onchange="validateGender()"> Other
+            </fieldset>
+            <span id="gender-status">❌ Please select one.</span>
+
+            <fieldset class="radio-group">
+                <legend>Have you been vaccinated?<span class="required-note">*required</span></legend>
+                <input type="radio" name="vaccinated" value="Yes" onchange="validateVaccinated()"> Yes
+                <input type="radio" name="vaccinated" value="No" onchange="validateVaccinated()"> No
+            </fieldset>
+            <span id="vaccinated-status">❌ Please select one.</span>
+
+            <fieldset class="radio-group">
+                <legend>Do you have insurance?<span class="required-note">*required</span></legend>
+                <input type="radio" name="insurance" value="Yes" onchange="validateInsurance()"> Yes
+                <input type="radio" name="insurance" value="No" onchange="validateInsurance()"> No
+            </fieldset>
+            <span id="insurance-status">❌ Please select one.</span>
+
+            <!-- Slider -->
+            <label for="health">On a scale of 1-10, how is your health?<span class="required-note">*required</span></label>
+            <div class="slider-container">
+                <input type="range" id="health" min="1" max="10" value="5" oninput="updateHealthValue()">
+                <span id="health-value" class="value-display">5</span> <!-- Value displayed here -->
+            </div>
+
+            <!-- Username -->
+            <label for="username">Desired Username:<span class="required-note">*required</span></label>
+            <input type="text" id="username" minlength="5" maxlength="30" required oninput="validatePassword(); validateUsername()" onblur="formatUsername()">
+            <span id="username-status"></span>
+
+            <!-- Password -->
+            <label for="password">Password:<span class="required-note">*required</span></label>
+            <div class="password-wrapper">
+                <input type="password" id="password" required oninput="validatePassword()">
+                <span class="toggle-password" onclick="toggleVisibility('password', this)">👁️</span>
+            </div>
+            <span id="caps-warning" class="caps-warning"></span>
+            <span id="password-status"></span>
+
+            <!-- Password Criteria Checklist -->
+            <ul id="password-checklist">
+                <li id="length-check">❌ At least 8-30 characters</li>
+                <li id="uppercase-check">❌ At least 1 uppercase letter</li>
+                <li id="lowercase-check">❌ At least 1 lowercase letter</li>
+                <li id="number-check">❌ At least 1 number</li>
+                <li id="special-check">❌ At least 1 special character (!@#%^&*()-_+=\/><.,`~)</li>
+                <li id="username-check">❌ Cannot contain your Username</li>
+            </ul>
+
+            <!-- Confirm Password -->
+            <label for="confirmPassword">Re-enter Password:<span class="required-note">*required</span></label>
+            <div class="password-wrapper">
+                <input type="password" id="confirmPassword" required oninput="checkPasswordMatch()">
+                <span class="toggle-password" onclick="toggleVisibility('confirmPassword', this)">👁️</span>
+            </div>
+            <span id="confirm-caps-warning" class="confirm-caps-warning"></span>
+            <span id="confirmPassword-status"></span>
+
+            <!-- Remember me checkbox -->
+            <label class="remember-label">
+                <input type="checkbox" id="rememberMe" checked>
+                <span>Remember Me</span>
+            </label>
+
+            <!-- Buttons to view, reset or submit -->
+            <div class="button-container">
+                <button type="button" onclick="reviewData()" class="review-btn">Review Information</button>
+                <button type="reset">Clear Information</button>
+                <button type="button" onclick="validateForm(true)" class="submit-button">Submit</button>
+            </div>
+            <span id="submit-error"></span>
+        </form>
+    </div>
+
+    <!-- Section for the review table pop up-->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <h2>Check your entries...</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Input Data</th>
+                        <th>Validation</th>
+                    </tr>
+                </thead>
+                <tbody id="modal-review-body"></tbody>
+            </table>
+            <div class="modal-buttons">
+                <button onclick="submitFormFinal()">Submit</button>
+                <button onclick="closeReviewModal()">Go Back</button>
+            </div>
+            <span id="review-warning" class="warning-message"></span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-map-container">
+        <footer class = "footer">
+            <p>&copy; 2025 BlueSky Medical Center. All Rights Reserved.</p>
+            <p>123 Medical Center Dr, Suite 100, City, State, ZIP</p>
+            <p>Phone: (123) 456-7890 | Email: <a href="mailto:dhpham25@cougarnet.uh.edu"</a>contact@blueskymedical.com</p>
+        </footer>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13862.574979903071!2d-95.40681787825721!3d29.70110674364005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c07130c55555%3A0xd0134feffe42ac0b!2sHouston%20Methodist%20Hospital!5e0!3m2!1sen!2sus!4v1745095214726!5m2!1sen!2sus"
+            width="400"
+            height="300"
+            style="border:0;"
+            class="map-frame" 
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+</body>
+</html>
